@@ -1,0 +1,51 @@
+<form [formGroup]="form" autocomplete="off" (ngSubmit)="login(form.value)">
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <div class="mt-5">
+        <div class="mt-5">
+          <div class="card mt-5">
+            <div class="card-title container">
+              <img class="card-img-top container" src="assets/images/loginlogo.jpg" alt="Card image cap" style="height: 130px;
+              width: 465px;
+              margin-top: 30px;" />
+            </div>
+
+            <div class="card-body">
+
+
+              <mat-form-field class="example-full-width" >
+                <input type="text" name="username" style="opacity: 0; height: 0; position: absolute;">
+                <mat-label>Username</mat-label>
+
+                <input matInput placeholder="Username" tabindex="1"  autofocus formControlName="username" required>
+                <mat-icon matSuffix>account_box</mat-icon>
+                <mat-error *ngIf="hasError('username', 'required')">Username is required.</mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width"  >
+                <input id="password" type="password" style="opacity: 0; height: 0; position: absolute;">
+
+                <mat-label>Password</mat-label>
+
+                <input matInput placeholder="Password" formControlName="password" type="password" tabindex="2"
+                  autocomplete="new-password" required>
+                <mat-icon matSuffix>vpn_key</mat-icon>
+                <mat-error *ngIf="hasError('password', 'required')">Password is required.</mat-error>
+              </mat-form-field>
+
+
+              <div class="form-group text-center mt-1">
+
+                <button mat-raised-button color="primary" [disabled]="!form.valid" class="btn-block btn-lg"
+                  tabindex="3">
+                  LOGIN
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

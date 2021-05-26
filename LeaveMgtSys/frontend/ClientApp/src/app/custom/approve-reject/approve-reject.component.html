@@ -1,0 +1,15 @@
+<div class="row justify-content-center">
+<div *ngIf="params.value === 0">
+  <a (click)="approve()">Approve</a> / <a (click)="reject()">Reject</a>
+</div>
+<div *ngIf="params.value === 1">
+  Approved
+  <!-- <mat-icon title="Approved">done</mat-icon> -->
+</div>
+<div *ngIf="params.value === 2">
+  Rejected
+  <!-- <mat-icon title="Reject">clear</mat-icon> -->
+</div>
+</div>
+ 
+ 

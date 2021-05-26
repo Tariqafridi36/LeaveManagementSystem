@@ -1,0 +1,94 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+      <mat-icon>apps</mat-icon>
+     Apply for a Leave
+    </mat-toolbar-row>
+  </mat-toolbar>  
+
+<div class="mt-3">  
+     
+        <div class="card"> 
+            
+            <div class="card-body" [style.height]="gridHeight">
+                <form [formGroup]="service.form" autocomplete="off"
+                novalidate >
+                    <div class="container">  
+                      <div class="row mt-3">
+                        <input type="hidden" name="$key" formControlName="$key">
+                       <div class="col-3"></div>
+                       <div class="col-5">
+                           <div class="card">
+                               <div class="card-body">
+                                <mat-form-field>
+                                    <mat-label>From Date</mat-label>
+                                    <input matInput [matDatepicker]="pickerInit" formControlName="fromdate" readonly />
+                                    <mat-datepicker #pickerInit>
+                                    </mat-datepicker>
+                                    <mat-datepicker-toggle matSuffix [for]="pickerInit"></mat-datepicker-toggle>
+                                  </mat-form-field>
+
+                                  <mat-form-field>
+                                    <mat-label>From Date</mat-label>
+                                    <input matInput [matDatepicker]="pickertodate" formControlName="todate" readonly />
+                                    <mat-datepicker #pickertodate>
+                                    </mat-datepicker>
+                                    <mat-datepicker-toggle matSuffix [for]="pickertodate"></mat-datepicker-toggle>
+                                  </mat-form-field>
+
+                                  <mat-form-field>
+                                    <mat-label>Leave Reason</mat-label>
+                                   
+                                    <mat-select  name="leavereason" formControlName="leavereason" >
+                                     <mat-option >--Select Reason--</mat-option>
+                                     <mat-option *ngFor="let act of reasons" [value]="act">
+                                        {{ act }}
+                                      </mat-option>
+                                     
+                                    </mat-select>
+                                    <mat-error *ngIf="hasError('leavereason', 'required')">Leave Reason is required</mat-error>   
+                                  </mat-form-field> 
+
+                                  
+
+                                  <mat-form-field class="example-full-width">
+                                    <mat-label>Detail</mat-label>
+                                    <input matInput  name="title" placeholder="Activity Name"
+                                      formControlName="title" maxlength="50">
+                                     <mat-error *ngIf="hasError('title', 'required')">Detail is required</mat-error>   
+                                  </mat-form-field> 
+
+                               </div>
+                               <div class="card-footer">
+                                <a mat-raised-button color="warn" matTooltip="Cancel" (click)="OnCancel()" >
+                                    <mat-icon>cancel</mat-icon>
+                                      Cancel
+                                  </a>
+
+                                  <a *ngIf="service.form.value.$key" mat-raised-button color="default" matTooltip="Cancel" (click)="OnDelete(service.form.value.$key)" >
+                                    <mat-icon>cancel</mat-icon>
+                                      Delete
+                                  </a>
+
+                                <button [disabled]="!service.form.valid" mat-raised-button color="primary" (click)="save(service.form.value)"
+                                 matTooltip="{{ service.buttonText }}">
+                                   <mat-icon>save</mat-icon>
+                                  {{ service.buttonText }}
+                                  </button>
+
+                               </div>
+                           </div>
+                       </div> 
+                            
+                      </div> 
+                    </div> 
+                   </form>
+            </div>
+            
+        </div>
+ 
+
+   
+
+
+   
+</div>

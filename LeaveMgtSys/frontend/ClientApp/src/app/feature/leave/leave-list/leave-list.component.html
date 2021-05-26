@@ -1,0 +1,51 @@
+ 
+<mat-toolbar>
+    <mat-toolbar-row>
+      <mat-icon>nfc</mat-icon>
+     Your Leaves 
+       
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="mt-3">
+  
+    <div class="mat-elevation-z8" [style.height]="gridHeight">
+  
+      <table mat-table *ngIf="datasource" [dataSource]="datasource" class="table" id="excel-table">
+  
+        <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
+  
+          <mat-header-cell *matHeaderCellDef [style.min-width]="column?.width"
+            [style.display]="column?.hide === true ? 'none' : ''">{{ column.header }}</mat-header-cell>
+          <mat-cell *matCellDef="let row" [style.min-width]="column?.width"
+            [style.display]="column?.hide === true ? 'none' : ''">
+            <div
+              *ngIf="column.columnDef !== 'isApproved' && column.columnDef !== 'action'">
+              {{ common.checkForNull(column?.cell(row)) }}
+            </div> 
+  
+  
+            <div *ngIf="column.columnDef === 'isApproved'">
+              <div *ngIf="row.isApproved === true">
+                Approved
+              </div>
+              <div *ngIf="row.isApproved === false">
+                Pending
+              </div> 
+            </div> 
+  
+  
+            <div *ngIf="column.columnDef === 'action' && row.isApproved === false">
+              <a style="cursor: pointer;" (click)="onEdit(row)" matTooltip="Edit">
+                <mat-icon>edit</mat-icon>
+              </a>
+            </div>
+  
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumn; sticky:true"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumn;" (mouseover)="row.hovered = true"
+          (mouseout)="row.hovered = false" [ngClass]="{hovered: row.hovered,  highlighted: selection.isSelected(row)}"
+          (click)="selection.select(row)" class="element-row" matRipple></mat-row>
+      </table>
+    </div>
+    <mat-paginator pageSize="100" [pageSizeOptions]="[25, 50, 100, 500, 1000]" showFirstLastButtons></mat-paginator>

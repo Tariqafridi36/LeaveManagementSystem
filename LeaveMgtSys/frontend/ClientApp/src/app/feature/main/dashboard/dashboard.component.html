@@ -1,0 +1,64 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+      <mat-icon>apps</mat-icon>
+     Dashboard
+    </mat-toolbar-row>
+  </mat-toolbar> 
+  <div class="mt-3">  
+     
+    <div class="card"> 
+        
+        <div class="card-body" [style.height]="gridHeight">
+           
+                Leave Status
+           <div class="row">
+            <div class="col-6">
+                <div class="justify-content-center"> 
+                    <div class="mt-3">
+                     <div class="chart-wrapper">
+                         <canvas baseChart  
+                         [data]="doughnutChartData"
+                         [labels]="doughnutChartLabels"
+                         [chartType]="doughnutChartType">
+                       </canvas>
+                     </div>
+                 </div> 
+            </div>
+            </div>
+            <div class="col-6">
+<table class="table mt-4">
+  <thead>
+    <tr>
+        <th>Leave Reason</th>
+        <th>Consumption</th>
+    </tr>
+  </thead>
+    <tbody *ngFor="let row of leaveData">
+        <tr>
+            <td>
+               {{ row.reason }} 
+            </td>
+            <td>
+                {{row.count}}
+            </td>
+        </tr>
+    </tbody> 
+    <tfoot>
+        <tr>
+            <th>Total Consumption</th>
+            <th>{{ consume }}</th>
+        </tr>
+        <tr>
+            <th>Total Leave</th>
+            <th>{{ total }}</th>
+        </tr>
+    </tfoot>
+  
+</table>
+ 
+            </div> 
+           </div>
+            
+        </div>
+    </div>
+  </div>

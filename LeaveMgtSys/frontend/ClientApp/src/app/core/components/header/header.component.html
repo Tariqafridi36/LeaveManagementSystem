@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-md">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/home/main/dashboard']">
+      <img src="assets/images/headerlogo.jpg" style="width: 276px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+
+        <li>
+          <button mat-menu-item  [routerLink]="['/home/leave/leave-list']">
+             Your Leaves
+          </button>
+        </li>
+        <li>
+  <button mat-menu-item  [routerLink]="['/home/leave/leave-add']">
+     Apply for Leave
+  </button>
+</li> 
+ 
+      </ul>
+      <div *ngIf="!authService.flag">
+        <button mat-menu-item [matMenuTriggerFor]="logoutMenu">
+          <mat-icon>account_box</mat-icon>{{ loginUser | titlecase }}
+        </button>
+        <mat-menu #logoutMenu="matMenu">
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>lock</mat-icon> Logout
+          </button>
+         
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+</nav>
