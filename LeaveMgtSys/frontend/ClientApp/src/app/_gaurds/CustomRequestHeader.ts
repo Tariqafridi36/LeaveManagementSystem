@@ -26,8 +26,7 @@ export class CustomRequestHeader implements HttpInterceptor {
       body: encryptedBody
     });
     // encrypted request
-    const data = next.handle(request);
-
+    const data = next.handle(request); 
 
     // plan request
     // const data = next.handle(req.clone({
