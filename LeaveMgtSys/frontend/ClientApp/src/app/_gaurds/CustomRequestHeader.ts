@@ -39,8 +39,7 @@ export class CustomRequestHeader implements HttpInterceptor {
  
   encrypt(req) { 
     try {   
-        var rsa = forge.pki.publicKeyFromPem(publicKey);  
-        const en = window.btoa(rsa.encrypt(req.body.password));
+        var rsa = forge.pki.publicKeyFromPem(publicKey);   
         return window.btoa(rsa.encrypt(JSON.stringify(req.body))); 
 
     } catch (error) {
